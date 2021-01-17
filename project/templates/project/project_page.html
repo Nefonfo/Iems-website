@@ -1,0 +1,45 @@
+{% extends "core/master_template.html" %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
+{% block content %}
+<main class="page project-page">
+    <section class="portfolio-block project">
+        <div class="container">
+            <div class="heading">
+                <h2>{{project.title}}</h2>
+            </div>
+            {% image project.image fill-800x533 as project_image %}
+            <div class="image" style="background-image:url({{project_image.url}});"></div>
+            <div class="row">
+                <div class="col-12 col-md-6 offset-md-1 info">
+                    <h3>Description</h3>
+                    {{project.description|richtext}}
+                </div>
+                <div class="col-12 col-md-3 offset-md-1 meta">
+                    <div class="tags">
+                        <span class="meta-heading">Fecha</span>
+                        <span>{{project.date}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="more-projects">
+                <h3 class="text-center">More Projects</h3>
+                <div class="row gallery">
+                    {% for suggestion in suggests %}
+                    <div class="col-md-4 col-lg-3">
+                        <div class="item">
+                            <a href="{% routablepageurl page 'project_page' suggestion.pk %}">
+                                {% image suggestion.image fill-800x533 as img_s %}
+                                <img class="img-fluid scale-on-hover" src="{{img_s.url}}">
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <h2 class="text-center text-muted">Proximamente...</h2>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content %}

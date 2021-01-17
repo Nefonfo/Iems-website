@@ -1,0 +1,18 @@
+{% extends "core/master_template.html" %}
+{% load crispy_forms_tags wagtailcore_tags  %}
+{% block content %}
+<main class="page contact-page">
+    <section class="portfolio-block contact">
+        <div class="container">
+            <div class="heading">
+                <h2>{{page.title}}</h2>
+            </div>
+            <form action="{% pageurl page %}" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <div class="form-group"><button class="btn btn-primary btn-block btn-lg" type="submit">Enviar</button></div>
+            </form>
+        </div>
+    </section>
+</main> 
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% load wagtailimages_tags%}
+<section id="skills" class="portfolio-block mt-n5 pb-0">
+    <div class="container">
+        <div class="heading">
+            <h2>{{self.title}}</h2>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6 order-2 order-lg-1">
+                <div class="skills portfolio-info-card">
+                    {% for skill in self.skills %}
+                        <h3>{{skill.name}}</h3>
+                        <div class="progress">
+                            <div class="progress-bar" aria-valuenow="{{skill.percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{skill.percentage}}%;">
+                                <span class="sr-only">{{skill.percentage}}%</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <div class="carousel slide" data-ride="carousel" id="carousel-{{self.title|slugify}}">
+                    <div class="carousel-inner">
+                        {% for skill in self.skills %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                {% image skill.image original as img_carrousel %}
+                                <img class="w-100 d-block" src="{{img_carrousel.url}}" alt="Slide Image">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <a class="carousel-control-prev" href="#carousel-{{self.title|slugify}}" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span><span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-{{self.title|slugify}}" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon"></span><span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <ol class="carousel-indicators">
+                        {% for skill in self.skills %}
+                            <li data-target="#carousel-{{self.title|slugify}}" data-slide-to="{{forloop.counter0}}" {% if forloop.first %}class="active"{%endif%}></li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

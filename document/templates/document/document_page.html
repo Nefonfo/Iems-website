@@ -1,0 +1,20 @@
+{% extends "core/master_template.html" %}
+{% load wagtailcore_tags %}
+{% block content %}
+<main class="page projets-page">
+    <section class="portfolio-block project-no-images">
+        <div class="container">
+            <div class="heading">
+                <h2>{{page.title}}</h2>
+            </div>
+            <div class="row">
+                {% for document in page.documents %}
+                    {% include_block document %}
+                {% empty %}
+                <h2 class="text-muted text-center">Proximamente...</h2>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}

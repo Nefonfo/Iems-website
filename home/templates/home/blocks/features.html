@@ -1,0 +1,22 @@
+<section class="portfolio-block mt-n5 pb-0">
+    <div class="container">
+        <div class="heading">
+            <h2>{{self.title}}</h2>
+        </div>
+        <div class="row">
+            {% for feature in self.features %}
+            <div class="col-md-4">
+                <div class="card special-skill-item border-0">
+                    <div class="card-header bg-transparent border-0">
+                        <i class="fa {{feature.icon}} iconx"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{feature.title}}</h3>
+                        <p class="card-text">{{feature.text}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

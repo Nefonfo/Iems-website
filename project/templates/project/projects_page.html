@@ -1,0 +1,80 @@
+{% extends "core/master_template.html" %}
+{% load wagtailimages_tags wagtailroutablepage_tags %}
+{% block content %}
+<main class="page projects-page">
+    <section class="portfolio-block projects-cards">
+        <div class="container">
+            <div class="heading">
+                <h2>{{page.header_title}}</h2>
+            </div>
+            <div class="row">
+                {% for project in projects.object_list %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0">
+                        <a href="{% routablepageurl page 'project_page' project.pk %}">
+                            {% image project.image fill-800x533 as img_p %}
+                            <img class="card-img-top scale-on-hover" src="{{img_p.url}}" alt="Card Image">
+                        </a>
+                        <div class="card-body">
+                            <h6><a href="{% routablepageurl page 'project_page' project.pk %}">{{project.title}}</a></h6>
+                            <p class="text-muted card-text">{{project.intro}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col d-sm-flex justify-content-sm-center align-items-sm-center">
+                    <nav>
+                        <ul class="pagination">
+                            {% if projects.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?{{ projects.previous_page_number.querystring }}" aria-label="Previous">
+                                        <span aria-hidden="true">«</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">«</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for page in projects.pages %}
+                                {% if page %}
+                                    {% ifequal page projects.number %}
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">{{page}}</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?{{ page.querystring }}">{{page}}</a>
+                                        </li>
+                                    {% endifequal %}
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link">...</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if projects.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?{{ projects.next_page_number.querystring }}" aria-label="Next">
+                                        <span aria-hidden="true">»</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">»</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}

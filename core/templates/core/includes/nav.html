@@ -1,0 +1,20 @@
+{% load menu_tags %}
+
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white portfolio-navbar">
+    <div class="container">
+        <a class="navbar-brand logo" href="/">{{ self.get_site.site_name }}</a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav navbar-nav ml-auto">
+                {% for item in menu_items %}
+                <li class="nav-item item">
+                    <a class="nav-link {{ item.active_class }}" href="{{ item.href }}">{{ item.text }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

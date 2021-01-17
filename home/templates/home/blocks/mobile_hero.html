@@ -1,0 +1,19 @@
+{% load wagtailimages_tags %}
+<section class="portfolio-block mobile-app">
+    <div class="container align-items-center">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-lg-3 offset-lg-2">
+                <div class="portfolio-phone-mockup">
+                    {% image self.image fill-318x566 as img %}
+                    <div class="phone-screen" style="background-image:url({{img.url}});">
+                    </div>
+                    <div class="home-button"></div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-5 text">
+                <h3>{{self.title}}</h3>
+                <p>{{self.text}}</p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,11 @@
+{% extends "core/master_template.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<main class="page lanidng-page mt-n1">
+    {% for block in page.body %}
+        {% include_block block with projects=page.projects%}
+    {% endfor %}
+</main>
+{% endblock content %}

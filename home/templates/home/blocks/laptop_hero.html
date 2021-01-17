@@ -1,0 +1,22 @@
+{% load wagtailimages_tags %}
+<section class="portfolio-block website gradient">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-lg-5 offset-lg-1 text">
+                <h3>{{self.title}}</h3>
+                <p>{{self.text}}
+                </p>
+            </div>
+            <div class="col-md-12 col-lg-5">
+                <div class="portfolio-laptop-mockup">
+                    <div class="screen">
+                        {% image self.image fill-1794x971 as img %}
+                        <div class="screen-content"
+                            style="background-image:url({{img.url}});"></div>
+                    </div>
+                    <div class="keyboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
