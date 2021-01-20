@@ -43,3 +43,15 @@
 </main>
 
 {% endblock content %}
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    $('img').removeAttr('css');
+    $('img').removeAttr('height');
+    $('img').removeAttr('width');
+    $('img').removeAttr('class');
+    $('img').addClass('img-fluid');
+    $('img').addClass('img-thumbnail');
+})
+</script>
+{% endblock extra_js %}
