@@ -1,10 +1,10 @@
 import os
 from .base import *
 
-DEBUG = True
+DEBUG = False
 
-#SESSION_COOKIE_SECURE = True
-#SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 ALLOWED_HOSTS = ['nefonfo.pythonanywhere.com', 'localhost']
 
 DB_NAME = "nefonfo$website"
