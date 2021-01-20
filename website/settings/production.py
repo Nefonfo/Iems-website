@@ -7,14 +7,13 @@ DEBUG = False
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 
-env = os.environ.copy()
 
-DB_NAME = env['DB_NAME']
-DB_USER = env['DB_USER']
-DB_PASS = env['DB_PASS']
-DB_HOST = env['DB_HOST']
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getDB_NAME = os.getenv('DB_USER')
+DB_PASS = os.getDB_NAME = os.getenv('DB_PASS')
+DB_HOST = os.getDB_NAME = os.getenv('DB_HOST')
 
-SECRET_KEY = env['SECRET_KEY']
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DATABASES = {
     'default': {
