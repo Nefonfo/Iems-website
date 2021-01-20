@@ -4,6 +4,9 @@ from .base import *
 
 DEBUG = False
 
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+
 env = os.environ.copy()
 
 DB_NAME = env['DB_NAME']
