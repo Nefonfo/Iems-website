@@ -1,5 +1,4 @@
 import os
-from website.settings.dev import SECRET_KEY
 from .base import *
 
 DEBUG = True
@@ -8,12 +7,12 @@ DEBUG = True
 #SECURE_SSL_REDIRECT = True
 ALLOWED_HOSTS = ['nefonfo.pythonanywhere.com', 'localhost']
 
-DB_NAME = os.getenv('DB_NAME')
-DB_USER = os.getDB_NAME = os.getenv('DB_USER')
-DB_PASS = os.getDB_NAME = os.getenv('DB_PASS')
-DB_HOST = os.getDB_NAME = os.getenv('DB_HOST')
+DB_NAME = "nefonfo$website"
+DB_USER = "nefonfo"
+DB_PASS = "Kirisaki5501"
+DB_HOST = "nefonfo.mysql.pythonanywhere-services.com"
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = "8uf_))y&38+xn5%5*gdp51f++2+l71n2^*0elr0g9+lj4hu%"
 
 DATABASES = {
     'default': {
