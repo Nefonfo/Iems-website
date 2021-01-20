@@ -4,6 +4,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtailfontawesome.blocks import IconBlock
 
 from core.models import Project
+from project.models import ProjectsPage
 
 class HeroHeaderBlock(blocks.StructBlock):
     title = blocks.CharBlock(
@@ -92,14 +93,52 @@ class ProjectsBlock(blocks.StructBlock):
     def get_context(self, value, parent_context):
         ctx =  super(ProjectsBlock, self).get_context(value, parent_context=parent_context)
         try:
+            ctx['inner_projects_page'] = ProjectsPage.objects.live()[0]
             ctx['projects'] = Project.objects.order_by('?')[0:6]
         except Project.DoesNotExist:
             ctx['projects'] = None
+            ctx['inner_projects_page'] = None
         return ctx
 
     class Meta:
         icon = 'doc-empty'
         template = 'home/blocks/release_projects.html'
+
+class TestimonialsBlock(blocks.StructBlock):
+
+    class TestimonialBlock(blocks.StructBlock):
+        author = blocks.CharBlock(
+            min_length = 10,
+            max_length = 100,
+            help_text = 'Subtítulo')
+        author_position = blocks.CharBlock(
+            min_length = 10,
+            max_length = 100,
+            help_text = 'Subtítulo',
+            required=False)
+        image = ImageChooserBlock()
+        text = blocks.CharBlock(
+            min_length = 10,
+            max_length = 400,
+            help_text = 'Subtítulo')
+
+        class Meta:
+            icon = 'placeholder'
+
+    title = blocks.CharBlock(
+            min_length = 10,
+            max_length = 100,
+            help_text = 'Titulo')
+    subtitle = blocks.CharBlock(
+            min_length = 10,
+            max_length = 400,
+            help_text = 'Subtítulo')
+    testimonials = blocks.ListBlock(TestimonialBlock())
+
+    class Meta:
+        icon = 'wagtail'
+        template = 'home/blocks/testimonial.html'
+
 
 class MobileHeroBlock(blocks.StructBlock):
     title = blocks.CharBlock(
@@ -141,3 +180,5 @@ class ContactBannerBlock(blocks.StructBlock):
     class Meta:
         icon = 'cogs'
         template = 'home/blocks/contact.html'
+
+

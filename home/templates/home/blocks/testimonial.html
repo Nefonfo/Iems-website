@@ -1,0 +1,24 @@
+{% load wagtailimages_tags %}
+<section class="testimonials-clean">
+    <div class="container pt-3">
+        <div class="intro">
+            <h2 class="text-center">{{self.title}}</h2>
+            <p class="text-center">{{self.subtitle}}</p>
+        </div>
+        <div class="row people">
+            {% for testimonial in self.testimonials %}
+            <div class="col-md-6 col-lg-4 item">
+                <div class="box">
+                    <p class="description">{{testimonial.text}}</p>
+                </div>
+                <div class="author">
+                    {% image testimonial.image fill-100x100 as img_p %}
+                    <img class="rounded-circle" src="{{img_p.url}}">
+                    <h5 class="name">{{testimonial.autor}}</h5>
+                    <p class="title">{{testimonial.author_position}}</p>
+                </div>
+            </div> 
+            {% endfor %}
+        </div>
+    </div>
+</section>
