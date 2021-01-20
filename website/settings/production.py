@@ -6,7 +6,7 @@ DEBUG = False
 
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
-
+ALLOWED_HOSTS = ['nefonfo.pythonanywhere.com', 'localhost']
 
 DB_NAME = os.getenv('DB_NAME')
 DB_USER = os.getDB_NAME = os.getenv('DB_USER')
