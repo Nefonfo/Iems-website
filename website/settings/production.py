@@ -13,7 +13,7 @@ DB_PASS = "Kirisaki5501"
 DB_HOST = "nefonfo.mysql.pythonanywhere-services.com"
 
 SECRET_KEY = "8uf_))y&38+xn5%5*gdp51f++2+l71n2^*0elr0g9+lj4hu%"
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
