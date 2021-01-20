@@ -2,10 +2,10 @@ import os
 from website.settings.dev import SECRET_KEY
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
+#SECURE_SSL_REDIRECT = True
 ALLOWED_HOSTS = ['nefonfo.pythonanywhere.com', 'localhost']
 
 DB_NAME = os.getenv('DB_NAME')
