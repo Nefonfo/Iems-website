@@ -2,3 +2,5 @@
 /media
 *.bat
 *.sqlite3
+.env
+.bat

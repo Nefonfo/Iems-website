@@ -7,12 +7,12 @@ SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 ALLOWED_HOSTS = ['nefonfo.pythonanywhere.com', 'localhost']
 
-DB_NAME = "nefonfo$website"
-DB_USER = "nefonfo"
-DB_PASS = "Kirisaki5501"
-DB_HOST = "nefonfo.mysql.pythonanywhere-services.com"
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getenv('DB_USER')
+DB_PASS = os.getenv('DB_PASS')
+DB_HOST = os.getenv('DB_HOST')
 
-SECRET_KEY = "8uf_))y&38+xn5%5*gdp51f++2+l71n2^*0elr0g9+lj4hu%"
+SECRET_KEY = os.getenv('SECRET_KEY')
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DATABASES = {
     'default': {
