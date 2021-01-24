@@ -18,11 +18,13 @@
                     <div class="tags">
                         <span class="meta-heading">Fecha</span>
                         <span>{{project.date}}</span>
+                        <span class="meta-heading">Compañia</span>
+                        <span><a href="{% routablepageurl self 'index'%}?company={{project.company_related}}">{{project.company_related}}</a></span>
                     </div>
                 </div>
             </div>
             <div class="more-projects">
-                <h3 class="text-center">More Projects</h3>
+                <h3 class="text-center">Más Proyectos</h3>
                 <div class="row gallery">
                     {% for suggestion in suggests %}
                     <div class="col-md-4 col-lg-3">

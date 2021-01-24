@@ -1,0 +1,21 @@
+{% load static wagtailimages_tags %}
+<section class="highlight-phone">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="intro">
+                    <h2>{{self.title}}</h2>
+                    <p>{{self.subtitle}}</p>
+                    <a class="btn btn-primary" role="button" href="{{self.link.url}}">{{self.button_title}}</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="d-none d-md-block phone-mockup">
+                    <img class="device" src="{% static 'core/img/phone.svg' %}">
+                    {% image self.image fill-450x800 as image %}
+                    <div class="screen" style="background-image: url({{image.url}})"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

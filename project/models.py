@@ -7,7 +7,7 @@ from wagtail.core.models import Page
 
 from pure_pagination import Paginator, PageNotAnInteger
 
-from core.models import Project
+from core.models import Project, Company
 
 # Create your models here.
 class ProjectsPage(RoutablePageMixin, Page):
@@ -25,13 +25,24 @@ class ProjectsPage(RoutablePageMixin, Page):
         except PageNotAnInteger:
             page = 1
 
-        resources = Project.objects.all()
+        try:
+            data = request.GET.get('company', None)
+            company = Company.objects.get(name = data)
+        except:
+            company = None
+            data = None
+
+        if data:
+            resources = Project.objects.filter(company_related  = company.pk)
+        else:
+            resources = Project.objects.all()
         p = Paginator(resources, request=request, per_page=3)
 
         return self.render(
             request,
             context_overrides= {
-                'projects': p.page(page)
+                'projects': p.page(page),
+                'company': company
             }
         )
 

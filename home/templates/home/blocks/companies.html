@@ -1,0 +1,20 @@
+{% load wagtailimages_tags wagtailroutablepage_tags %}
+<section class="portfolio-block projects compact-grid pt-5 pb-0">
+    <div class="heading mb-5">
+        <h2>{{self.title}}</h2>
+    </div>
+    <div class="row no-gutters flex justify-content-center">
+        {% for company in companies %}
+        <div class="col-md-6 col-lg-4 item zoom-on-hover">
+            <a href="{% routablepageurl inner_projects_page 'index'%}?company={{company.name}}">
+                {% image company.image fill-800x533 as img_p %}
+                <img class="img-fluid image" src="{{img_p.url}}">
+                <span class="description">
+                    <span class="description-heading">{{company.name}}</span>
+                    <span class="description-body">{{company.intro}}</span>
+                </span>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>

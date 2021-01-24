@@ -3,7 +3,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from wagtailfontawesome.blocks import IconBlock
 
-from core.models import Project
+from core.models import Project, Company
 from project.models import ProjectsPage
 
 class HeroHeaderBlock(blocks.StructBlock):
@@ -110,17 +110,17 @@ class TestimonialsBlock(blocks.StructBlock):
         author = blocks.CharBlock(
             min_length = 10,
             max_length = 100,
-            help_text = 'Subtítulo')
+            help_text = 'Autor')
         author_position = blocks.CharBlock(
             min_length = 10,
             max_length = 100,
-            help_text = 'Subtítulo',
+            help_text = 'Posición del Autor',
             required=False)
         image = ImageChooserBlock()
         text = blocks.CharBlock(
             min_length = 10,
             max_length = 400,
-            help_text = 'Subtítulo')
+            help_text = 'Texto')
 
         class Meta:
             icon = 'placeholder'
@@ -182,3 +182,77 @@ class ContactBannerBlock(blocks.StructBlock):
         template = 'home/blocks/contact.html'
 
 
+class TeamStackBlock(blocks.StructBlock):
+    class MemberBlock(blocks.StructBlock):
+        member = blocks.CharBlock(
+            min_length = 3,
+            max_length = 100,
+            help_text = 'Nombre del Miembro')
+        member_position = blocks.CharBlock(
+            min_length = 3,
+            max_length = 100,
+            help_text = 'Posición',
+            required=False)
+        image = ImageChooserBlock()
+        text = blocks.CharBlock(
+            min_length = 10,
+            max_length = 600,
+            help_text = 'Texto')
+
+        class Meta:
+            icon = 'placeholder'
+
+    title = blocks.CharBlock(
+            min_length = 10,
+            max_length = 100,
+            help_text = 'Titulo')
+    subtitle = blocks.CharBlock(
+            min_length = 10,
+            max_length = 400,
+            help_text = 'Subtítulo')
+
+    members = blocks.ListBlock(MemberBlock())
+
+    class Meta:
+        icon = 'cogs'
+        template = 'home/blocks/team_stack.html'
+
+class CompaniesBlock(blocks.StructBlock):
+    title = blocks.CharBlock(
+            min_length = 10,
+            max_length = 100,
+            help_text = 'Titulo')
+
+    def get_context(self, value, parent_context):
+        ctx =  super(CompaniesBlock, self).get_context(value, parent_context=parent_context)
+        try:
+            ctx['companies'] = Company.objects.all()
+            ctx['inner_projects_page'] = ProjectsPage.objects.live()[0]
+        except:
+            ctx['companies'] = None
+            ctx['inner_projects_page'] = None
+        return ctx
+
+    class Meta:
+        icon = 'doc-empty'
+        template = 'home/blocks/companies.html'
+
+class ContactMobileBlock(blocks.StructBlock):
+    title = blocks.CharBlock(
+            min_length = 10,
+            max_length = 100,
+            help_text = 'Titulo')
+    subtitle = blocks.CharBlock(
+            min_length = 10,
+            max_length = 200,
+            help_text = 'Subtítulo')
+    button_title = blocks.CharBlock(
+            min_length = 10,
+            max_length = 70,
+            help_text = 'Titulo del Botón')
+    link = blocks.PageChooserBlock()
+    image = ImageChooserBlock()
+
+    class Meta:
+        icon = 'wagtail'
+        template = 'home/blocks/contact_mobile.html'

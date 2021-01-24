@@ -1,0 +1,22 @@
+{% load wagtailimages_tags %}
+<section class="team-boxed">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">{{self.title}}</h2>
+            <p class="text-center">{{self.subtitle}}</p>
+        </div>
+        <div class="row people">
+            {% for member in self.members %}
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box">
+                        {% image member.image fill-320x320 as m_img %}
+                        <img class="rounded-circle" src="{{m_img.url}}">
+                        <h3 class="name">{{member.member}}</h3>
+                        <p class="title">{{member.member_position}}</p>
+                        <p class="description">{{member.text}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
